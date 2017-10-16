@@ -45,4 +45,39 @@ class QuestionDeleteView(LoginRequiredMixin,DeleteView):
 
     success_url = reverse_lazy('question_list')
 
+ @login_required
+def question_publish(request,pk):
+    question = get_object_or_404(Question, pk=pk)
+    question.publish()
+    return redirect('question_detail',pk=pk)
+
+
+@login_required
+def add_answer_to_question(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.question = question
+            answer.save()
+            return redirect('question_detail', pk=question.pk)
+    else:
+        form = AnswerForm()
+    return render(request, 'answer_form.html', {'form': form})
+
+@login_required
+def answer_approve(request, pk):
+    answer = get_object_or_404(Answer, pk=pk)
+    answer.approve()
+    return redirect('answer_detail', pk=answer.question.pk)
+
+
+@login_required
+def answer_remove(request,pk):
+    answer = get_object_or_404(Answer,pk=pk)
+    question_pk = answer.question.pk
+    answer.delete()
+    return redirect('question_detail',pk=question_pk)
+ 
  
