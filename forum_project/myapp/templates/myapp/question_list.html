@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>questionlist</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
+  </head>
+  <body>
+   {% for question in question_list %}
+           <div>
+             <h1><a href="{% url 'question_detail' pk=question.pk %}">{{question.title}}</a></h1>
+              <div class="date">
+
+                <p>Published on {{question.published_date|date:"D M Y"}}</p>
+
+              </div>
+
+              <a href="{% url 'question_detail' pk=question.pk %}">{{question.approve_answer.count}}</a>
+
+
+           </div>
+
+   {% endfor %}
+
+  </body>
+</html>
+
