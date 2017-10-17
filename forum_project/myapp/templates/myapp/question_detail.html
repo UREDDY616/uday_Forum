@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>question detail</title>
+  </head>
+  <body>
+    <h1 class="posttitle loader">{{question.title}}</h1>
+
+        {% if question.published_date  %}
+              <div class="date postdate">
+                {{question.published_date}}
+              </div>
+        {% else %}
+           <a  class="btn btn-default" href="{% url 'question_publish' pk=question.pk %}">publish</a>
+
+        {% endif %}
+
+       <div class="postcontent">{{question.text|safe|linebreaksbr}}</div>
+
+
+
+
+          <hr>
+
+
+          <a href="{% url 'add_answer_to_question' pk=question.pk %}" class="btn btn-primary btn-comment">add answer</a>
+
+          <div class="container">
+            {% for answer in question.Answers.all %}
+
+
+           {% if not answer.approved_answer %}
+            <a href="{% url 'answer_remove' pk=answer.pk %}" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>
+             <a href="{% url 'answer_approve' pk=answer.pk %}" class="bth btn-default"><span class="glyphicon glyphicon-ok"></span></a>
+           {% endif %}
+
+          <p>{{answer.text|safe|linebreaks}}</p>
+          <p>Posted by: <strong>{{answer.author}}</strong></p>
+
+       {% empty %}
+       <p>no answers yet please post some answers here</p>
+
+
+
+            {% endfor %}
+
+
+
+
+          </div>
+
+  </body>
+</html>
