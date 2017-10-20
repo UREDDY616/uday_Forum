@@ -1,1 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Answer Form</title>
+  </head>
+  <body>
+    <h1>new answer</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="save btn btn-default"></button>
 
+  </body>
+</html>
