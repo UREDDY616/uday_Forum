@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
   </head>
   <body>
+    <h2>The question list </h2>
    {% for question in question_list %}
            <div>
              <h1><a href="{% url 'question_detail' pk=question.pk %}">{{question.title}}</a></h1>
