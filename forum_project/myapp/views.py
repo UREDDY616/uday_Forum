@@ -51,8 +51,6 @@ def question_publish(request,pk):
     question.publish()
     return redirect('question_detail',pk=pk)
 
-
-@login_required
 def add_answer_to_question(request, pk):
     question = get_object_or_404(Question, pk=pk)
     if request.method == "POST":
