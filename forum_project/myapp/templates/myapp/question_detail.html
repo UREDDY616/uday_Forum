@@ -18,11 +18,7 @@
 
        <div class="postcontent">{{question.text|safe|linebreaksbr}}</div>
 
-
-
-
           <hr>
-
 
           <a href="{% url 'add_answer_to_question' pk=question.pk %}" class="btn btn-primary btn-comment">add answer</a>
 
@@ -41,12 +37,7 @@
        {% empty %}
        <p>no answers yet please post some answers here</p>
 
-
-
             {% endfor %}
-
-
-
 
           </div>
 

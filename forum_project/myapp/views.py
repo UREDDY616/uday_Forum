@@ -45,7 +45,7 @@ class QuestionDeleteView(LoginRequiredMixin,DeleteView):
 
     success_url = reverse_lazy('question_list')
 
- @login_required
+@login_required
 def question_publish(request,pk):
     question = get_object_or_404(Question, pk=pk)
     question.publish()
